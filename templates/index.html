@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconocimiento de Emociones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Reconocimiento de Emociones</h1>
+        <button id="capturarRostros">Capturar Rostros</button>
+        <button id="reconocerEmociones">Reconocer Emociones</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('capturarRostros').onclick = function() {
+            fetch('/capturar-rostros')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = data.status;
+                });
+        };
+
+        document.getElementById('reconocerEmociones').onclick = function() {
+            fetch('/reconocer-emociones')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = data.status;
+                });
+        };
+    </script>
+</body>
+</html>
